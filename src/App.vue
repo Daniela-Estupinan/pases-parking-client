@@ -60,7 +60,7 @@
           items: [
         
         { title: 'Home', icon: 'mdi-home',link:"/" },
-        { title: 'Crear Usuario', icon: 'mdi-note-plus',link:"/add-post" },
+       
         
       ],
      }),
