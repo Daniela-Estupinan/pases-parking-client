@@ -4,15 +4,15 @@
             <v-col sm="10" class="mx-auto">
                 <v-card class="pa-5" color="purple lighten-5">
                     <v-card-title >
-                        Add New Post
+                        Add New User
                     </v-card-title>
                     <v-divider></v-divider>
                     <v-form ref="form" @submit.prevent="submitForm" class="pa-5" enctype="multipart/form-data">
-                    <v-text-field label="Title" v-model="post.title" prepend-icon="mdi-note" :rules="rules"></v-text-field>
-                    <v-text-field label="Category" v-model="post.category" prepend-icon="mdi-view-list" :rules="rules"></v-text-field>                    
-                    <v-textarea label="Content" v-model="post.content" prepend-icon="mdi-note-plus" :rules="rules"></v-textarea>     
-                    <v-file-input @change="selectFile" :rules="rules" show-size counter multiple label="Select Image"></v-file-input>  
-                    <v-btn type="submit" class="mt-3" color="deep-purple accent-1">Add Post</v-btn>      
+                    <v-text-field label="Name" v-model="item.name" prepend-icon="mdi-note" :rules="rules"></v-text-field>
+                    <v-text-field label="Type" v-model="item.type" prepend-icon="mdi-view-list" :rules="rules"></v-text-field>                    
+                    <v-text-field label="Numero de pases" v-model="item.pases" prepend-icon="mdi-view-list" :rules="rules"></v-text-field>     
+                    <v-text-field label="Fecha de compra" v-model="item.date" prepend-icon="mdi-view-list" :rules="rules"></v-text-field>     
+                    <v-btn type="submit" class="mt-3" color="deep-purple accent-1">Add User</v-btn>      
                     </v-form>
                 </v-card>
             </v-col>
@@ -25,34 +25,24 @@ export default{
     data(){
         return{
             rules:[(value)=> !!value || "*This field is required*"],
-            post:{
-                title:"",
-                category:"",
-                content:"",
-                image:"",
+            item:{
+                name:"",
+                type:"",
+                pases:"",
+                date:"",
             },
-            image:"",
+            
         };
     },
     methods:{
-        selectFile(file){
-            this.image = file[0];
-        },
+       
         async submitForm(){
-            const response = await fetch("https://skin-care-tips.herokuapp.com/api/user/login/");
-      if(localStorage.getItem("token")===null){
-        
-        
-        this.$router.push({
-                   name: 'login',
-                  params: {message: response.message}
-               });
-      }else{
+                 
              const formData = new FormData();
-            formData.append('image', this.image);
-            formData.append('title', this.post.title);
-           formData.append('category', this.post.category);
-           formData.append('content', this.post.content);
+            formData.append('name', this.item.name);
+           formData.append('type', this.item.type);
+           formData.append('pases', this.item.pases);
+           formData.append('date', this.item.date);
            if(this.$refs.form.validate()){
                const response = await API.addPost(formData);
                this.$router.push({
@@ -64,7 +54,7 @@ export default{
       }
 
         },
-    },
+
 };
 
 </script>

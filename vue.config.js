@@ -4,6 +4,6 @@ module.exports = defineConfig({
     'vuetify'
   ],
   devServer:{
-    proxy:"https://skin-care-tips.herokuapp.com", //backend address
+    proxy:"https://pases-parking-dbem.com", //backend address
   }
 })

@@ -40,12 +40,9 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-col class="d-flex justify-space-around">
          <v-toolbar-title >
-            Skin Care Tips
+            Tickets de Parqueadero
          </v-toolbar-title>
-        <v-btn color = "red" text @click="removeToken" elevation="2" large>
-             LogOut
-      </v-btn>
-        </v-col>
+                </v-col>
 
     </v-app-bar>
 
@@ -61,26 +58,12 @@
   export default {
     data: () => ({ drawer: null,
           items: [
-        { title: 'Log In', icon:'mdi-login', link:"/"},
+        
         { title: 'Home', icon: 'mdi-home',link:"/home" },
-        { title: 'Add Post', icon: 'mdi-note-plus',link:"/add-post" },
-        { title: 'Productos', icon: 'mdi-shopping',link:"/about" },
-        { title: 'Category', icon: 'mdi-chart-bubble',link:"/category" },
+        { title: 'Crear Usuario', icon: 'mdi-note-plus',link:"/add-post" },
         
       ],
      }),
-         methods:{
-             async removeToken(){
-                 const response = await fetch("https://skin-care-tips.herokuapp.com/api/user/login/");
-                 localStorage.clear();
-                   this.$router.push({
-                   name: 'login',
-                   params: {message: response.message}
-               });
-
-            }
-
-    }
   }
   
 </script>
